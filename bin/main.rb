@@ -75,7 +75,8 @@ class Monitor
   end
   c += 1
   end
-
+  $b.win_update
+  puts " match result in a draw"
 
 
 
