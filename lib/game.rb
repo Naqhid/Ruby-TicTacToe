@@ -12,3 +12,4 @@ class  Game
       return true
     end 
   end
+end
