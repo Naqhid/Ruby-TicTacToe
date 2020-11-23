@@ -2,6 +2,88 @@
 require_relative("../lib/game")
 require_relative("../lib/player")
 require_relative("../lib/board")
+
+class  Game 
+  def  self.validate_name(name,sign)
+    if name.length  < 3
+      puts "too short name try another"
+      return false
+    else  
+    Player.new(name,sign)
+    
+      return true
+    end 
+  end
+end
+
+$store = [ ]
+class Player
+
+  attr_reader :name, :sign
+
+  def self.store1
+    $store
+  end
+    def initialize(name, sign)
+      @name = name
+      @sign = sign
+    $store << @name
+    end
+  end 
+
+  class Board
+    @@view_board = [0,1,2,3,4,5,6,7,8] 
+    @@combinations = [ [0,1,2], [3,0,6],[3,4,5],[6,7,8],[1,4,7],[2,5,8],[0,4,8],[6,4,2] ]
+     
+                    
+        
+           def initialize
+          
+               @true_board = [10, 10, 10, 10, 10, 10, 10, 10, 10] 
+             
+           end
+           def display_board 
+            puts @@view_board[0].to_s + '|' + @@view_board[1].to_s + '|' + @@view_board[2].to_s
+            puts '-----'
+            puts @@view_board[3].to_s + '|' + @@view_board[4].to_s + '|' + @@view_board[5].to_s
+            puts '-----'
+            puts @@view_board[6].to_s + '|' + @@view_board[7].to_s + '|' + @@view_board[8].to_s
+          end
+  
+          def update_board(pos,sign)
+            puts  sign == 'x'   ?  @true_board[pos] = 0 : @true_board[pos] = 1
+            if @@view_board[pos].is_a?(Numeric)
+              @@view_board[pos] = sign
+              return true
+            else
+              puts  "invalid move try again!"
+              return false
+            end
+            
+          end  
+          def win_update
+          
+             @@combinations.each  do |e| 
+               sum = @true_board[e[0]] + @true_board[e[1]] + @true_board[e[2]]
+               if  sum == 0
+                 
+                 puts " yes#{Player.store1[0]} won"
+                 exit 1
+               elsif sum == 3
+                  puts " winner is #{Player.store1[1]} won"
+                 puts " no"
+                 exit 1
+         
+               end
+               end
+               return false
+             
+             end
+        end 
+  
+  
+
+
 $b = Board.new
 class Monitor
   def initialize
@@ -50,28 +132,32 @@ class Monitor
   if c % 2 == 0 
    
     $b.display_board
+    $b.win_update
        puts "#{Player.store1[0]} make your move and choose which square you like "
-       $b.win_update
+      
        $d = m.player_move
        
    
        until  $b.update_board($d,'x') 
-        $b.update_board($d,'x') 
         $b.win_update
+        $b.update_board($d,'x') 
+        
          $d = m.player_move 
        
        end
    
   else
     $b.display_board
-    puts "#{Player.store1[1]} make your move and choose which square you like"
     $b.win_update
+    puts "#{Player.store1[1]} make your move and choose which square you like"
+   
     $d = m.player_move
     
     
     until  $b.update_board($d,'o')  
-      $b.update_board($d,'o')  
       $b.win_update
+      $b.update_board($d,'o')  
+     
      $d = m.player_move
     end
 
@@ -79,6 +165,9 @@ class Monitor
   end
   c += 1
   end
+
+
+
   $b.win_update
   puts " match result in a draw"
 
