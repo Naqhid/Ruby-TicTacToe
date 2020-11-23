@@ -12,7 +12,9 @@ class Monitor
     puts 'Name is too short,try again'
     player_2_name = gets.chomp.strip.capitalize
   end
-
+  def display_board 
+    $b.display_board
+  end
   end
 
 
