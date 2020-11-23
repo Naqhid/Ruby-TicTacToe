@@ -1,7 +1,9 @@
 require_relative("./board")
+$store = [ ]
 class Player
+
   attr_reader :name, :sign
-  @@store = [ ]
+  
  
   
   end
@@ -11,5 +13,5 @@ class Player
     def initialize(name, sign)
       @name = name
       @sign = sign
-    @@store << @name
+    $store << @name
     end
