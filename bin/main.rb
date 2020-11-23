@@ -16,6 +16,7 @@ class Monitor
     puts "Player1 type your name \n"
     
       player_1_name = gets.chomp.strip.capitalize
+      puts "#{player_1_name} u have been assigned sign : x"
     until Game.validate_name(player_1_name,'x') 
     
       puts 'Name is too short,try again'
@@ -24,7 +25,7 @@ class Monitor
     
     puts "Player2 type your name \n "
     player_2_name = gets.chomp.strip.capitalize
-    
+    puts "#{player_2_name} u have been assigned sign : o"
     until Game.validate_name(player_2_name,'o') 
     
       puts 'Name is too short,try again'
@@ -40,37 +41,40 @@ class Monitor
 
   m = Monitor.new
 
-  m.display_board
+  # m.display_board
   m.player_input 
   c=0
   # p = player.new
   while c < 9
     
   if c % 2 == 0 
-       puts "#{$Player.store1[1]} make your move and choose which square you like "
+   
+    $b.display_board
+       puts "#{Player.store1[0]} make your move and choose which square you like "
        $b.win_update
        $d = m.player_move
        
-       $b.display_board
+   
        until  $b.update_board($d,'x') 
         $b.update_board($d,'x') 
         $b.win_update
          $d = m.player_move 
        
        end
-       $b.display_board
+   
   else
-    puts "#{$Player.store1[1]} make your move and choose which square you like"
+    $b.display_board
+    puts "#{Player.store1[1]} make your move and choose which square you like"
     $b.win_update
     $d = m.player_move
     
-    $b.display_board
+    
     until  $b.update_board($d,'o')  
       $b.update_board($d,'o')  
       $b.win_update
      $d = m.player_move
     end
-    $b.display_board
+
     
   end
   c += 1
