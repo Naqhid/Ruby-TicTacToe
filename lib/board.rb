@@ -21,4 +21,18 @@ class Board
           puts '-----'
           puts @@view_board[6].to_s + '|' + @@view_board[7].to_s + '|' + @@view_board[8].to_s
         end
+
+        def update_board(pos,sign)
+  
+          puts "update_board #{sign}"
+          puts "anand"
+          puts  sign == 'x'   ?  @true_board[pos] = 0 : @true_board[pos] = 1
+          if @@view_board[pos].to_i.is_a?(Numeric)
+            @@view_board[pos] = sign
+            return true
+          else
+            puts  "invalid move try again!"
+            return false
+          end
+          
         end  
