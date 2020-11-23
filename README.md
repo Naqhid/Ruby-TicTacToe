@@ -1,1 +1,1 @@
-# Ruby-TicTacToe
+# Tic-Tac-Toe-Ruby
