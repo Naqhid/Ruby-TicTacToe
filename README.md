@@ -26,7 +26,7 @@ In this game there are 5 main files
     2- player.rb this is a liberary that's responsable of storing players variables such as (name, token).
     3- game.rb which is responsible for the game methods, validations, comparisions and board manipulation.
     4- board.rb which is responsible for showing the game interface
-    5- helper.rb which helps the user for some useful methods
+
 
     ---------------------------------------------------------------------------------------------------------------------
 
