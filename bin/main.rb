@@ -63,17 +63,7 @@ class Player
           end  
           def win_update
           
-             @@combinations.each  do |e| 
-               sum = @true_board[e[0]] + @true_board[e[1]] + @true_board[e[2]]
-               if  sum == 0
-                 
-                 puts " yes#{Player.store1[0]} won"
-                 exit 1
-               elsif sum == 3
-                  puts " winner is #{Player.store1[1]} won"
-                 puts " no"
-                 exit 1
-         
+             puts " winnerr is someone"
                end
                end
                return false
