@@ -8,7 +8,10 @@ class Monitor
   puts "Welcome to Tic Tac Toe game \n\n "
   end
 
- 
+  def display_board 
+    $b.display_board
+  end
+
   def player_input
     puts "Player1 type your name \n"
     
@@ -29,9 +32,10 @@ class Monitor
     end
     end
 
-  def display_board 
-    $b.display_board
-  end
+    def player_move
+      gets.chomp.to_i
+   end
+ 
   end
 
 
