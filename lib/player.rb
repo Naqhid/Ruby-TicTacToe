@@ -12,4 +12,4 @@ class Player
       @sign = sign
     $store << @name
     end
-  end
+  end 

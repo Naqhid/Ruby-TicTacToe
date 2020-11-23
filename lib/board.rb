@@ -21,7 +21,7 @@ class Board
         def update_board(pos,sign)
   
           puts "update_board #{sign}"
-          puts "anand"
+         
           puts  sign == 'x'   ?  @true_board[pos] = 0 : @true_board[pos] = 1
           if @@view_board[pos].is_a?(Numeric)
             @@view_board[pos] = sign
