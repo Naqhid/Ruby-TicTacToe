@@ -47,7 +47,7 @@ class Monitor
   while c < 9
     
   if c % 2 == 0 
-       puts "player1 make ur move and choose which square u like "
+       puts "#{$Player.store1[1]} make your move and choose which square you like "
        $b.win_update
        $d = m.player_move
        
@@ -60,7 +60,7 @@ class Monitor
        end
        $b.display_board
   else
-    puts "player2 make ur move and choose which square u like"
+    puts "#{$Player.store1[1]} make your move and choose which square you like"
     $b.win_update
     $d = m.player_move
     
