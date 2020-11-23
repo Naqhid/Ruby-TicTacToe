@@ -48,10 +48,10 @@ class Monitor
     
   if c % 2 == 0 
        puts "player1 make ur move and choose which square u like "
-      #  $b.win_update
+       $b.win_update
        $d = m.player_move
        
-      #  $b.display_board
+       $b.display_board
        until  $b.update_board($d,'x') 
         $b.update_board($d,'x') 
         $b.win_update
@@ -61,13 +61,13 @@ class Monitor
        $b.display_board
   else
     puts "player2 make ur move and choose which square u like"
-    # $b.win_update
+    $b.win_update
     $d = m.player_move
     
-    # $b.display_board
+    $b.display_board
     until  $b.update_board($d,'o')  
       $b.update_board($d,'o')  
-      # $b.win_update
+      $b.win_update
      $d = m.player_move
     end
     $b.display_board
@@ -75,8 +75,8 @@ class Monitor
   end
   c += 1
   end
-  # $b.win_update
-  # puts " match result in a draw"
+  $b.win_update
+  puts " match result in a draw"
 
 
 
