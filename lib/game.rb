@@ -10,4 +10,13 @@ class  Game
     
       return true
     end 
+    def self.update_board(pos,sign)
+        sign == 'x'   ?  @true_board[pos] = 0 : @true_board[pos] = 1
+      if @@view_board[pos].is_a?(Numeric)
+        @@view_board[pos] = sign
+        return true
+      else
+        puts  "invalid move try again!"
+        return false
+      end
   end
