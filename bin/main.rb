@@ -22,7 +22,7 @@ class Monitor
       player_2_name = gets.chomp.strip.capitalize
     end
     end
-    def player_move
+    def self.player_move
        gets.chomp.to_i
     end
     end 
