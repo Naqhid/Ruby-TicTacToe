@@ -49,10 +49,6 @@ In this game there are 5 main files
 - VSCode
 - Rubocop
 
-## Live Demo
-
-To quickly see our project in action, visit the [live demo](https://repl.it/@MkrtichSargsyan/TicTacToe-Ruby-Project-#bin/main.rb) on repl.it. Type bin/main.rb to execute the program.
-
 ## Getting Started
 
 ### Prerequisites
@@ -66,7 +62,7 @@ To get this project up and running, you must already have ruby installed on your
 1. Open Terminal.
 2. Navigate to your desired location to download the contents of this repository.
 3. Copy and paste the following code into the Terminal:
-   git clone https://github.com/AkintoyeOlamide/TicTacToe-Ruby-Project-
+   git clone https://github.com/Naqhid/Ruby-TicTacToe
 4. Hit enter.
 5. Once the repository has been cloned, navigate inside the repository and type:
    bin/main.rb
