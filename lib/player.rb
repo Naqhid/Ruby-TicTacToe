@@ -10,4 +10,7 @@ class  Game
     
       return true
     end 
+
+    game.update_board
+    game.win_update
   end
