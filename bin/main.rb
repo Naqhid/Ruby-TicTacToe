@@ -22,7 +22,8 @@ class Monitor
       player_2_name = gets.chomp.strip.capitalize
     end
     end
-    def self.player_move
+    def self.player_move(name)
+      puts "#{name} make your move and enter corresponding board number"
        gets.chomp.to_i
     end
     end 
