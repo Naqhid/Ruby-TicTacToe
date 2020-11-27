@@ -1,16 +1,20 @@
 require_relative("./board")
 require_relative("./player")
 class  Game 
-  def  self.validate_name(name,sign)
-    if name.length  < 3
-      puts "too short name try another"
-      return false
-    else  
-    Player.new(name,sign)
+    def play #runs the game
+        puts "Let's play tic-tac-toe!"
+        display_board
     
-      return true
-    end 
-
-    game.update_board
-    game.win_update
+        until @game_over == true
+          @last_player == 'O' ? moveX : moveO
+          display_board
+          score
+          check
+        end
+      end
+    end
+    
+    fun = Game.new
+    fun.play
+    
   end
