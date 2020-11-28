@@ -1,19 +1,52 @@
-
-require_relative("../lib/player")
 class Board
-    def initialize
-        @view_board = ['1', '2', '3', '4', '5', '6', '7', '8', '9'] 
-        @true_board = [0, 0, 0, 0, 0, 0, 0, 0, 0] 
-        @last_move = 0
-        @last_player = 'O' 
-        @game_over = false
+  attr_reader :squares, :wining_combinations
+  attr_writer :squares
+
+  def initialize
+    @squares = [
+      [{ '1': nil }, { '2': nil }, { '3': nil }],
+      [{ '4': nil }, { '5': nil }, { '6': nil }],
+      [{ '7': nil }, { '8': nil }, { '9': nil }]
+    ]
+
+    @wining_combinations = [
+      [1, 2, 3], [4, 5, 6], [7, 8, 9],
+      [1, 4, 7], [2, 5, 8], [3, 6, 9],
+      [1, 5, 9], [3, 5, 7]
+    ]
+  end
+
+  def show_board
+    output = "+------------------------+\n"
+
+    @squares.each do |arr|
+      output += '|'
+      arr.each do |el|
+        el.each do |key, value|
+          output += if value
+                      " #{key} - #{value == 'x' ? "\u{274C}" : "\u2B55"} "
+                    else
+                      " #{key} - \u{2754} "
+                    end
+        end
       end
-    
-      def display_board 
-        puts @view_board[0] + '|' + @view_board[1] + '|' + @view_board[2]
-        puts '-----'
-        puts @view_board[3] + '|' + @view_board[4] + '|' + @view_board[5]
-        puts '-----'
-        puts @view_board[6] + '|' + @view_board[7] + '|' + @view_board[8]
+      output += "| \n"
+    end
+
+    output += '+------------------------+'
+    output
+  end
+
+  
+  def update_board(num, sign)
+    @squares = @squares.map do |row|
+      row.each do |item|
+        item.each do |key, _value|
+          item[key] = sign if key == :"#{num}"
+        end
       end
-    
+    end
+
+    show_board
+  end
+end

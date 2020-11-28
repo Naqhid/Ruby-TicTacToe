@@ -1,96 +1,73 @@
 #!/usr/bin/env ruby
-require_relative("../lib/game")
-require_relative("../lib/player")
-require_relative("../lib/board")
 
-class Game
-  def initialize
-    @view_board = ['1', '2', '3', '4', '5', '6', '7', '8', '9'] 
-    @true_board = [0, 0, 0, 0, 0, 0, 0, 0, 0] 
-    @last_move = 0
-    @last_player = 'O' 
-    @game_over = false
-  end
+require_relative('../lib/player')
+require_relative('../lib/game')
 
-  def display_board 
-    puts @view_board[0] + '|' + @view_board[1] + '|' + @view_board[2]
-    puts '-----'
-    puts @view_board[3] + '|' + @view_board[4] + '|' + @view_board[5]
-    puts '-----'
-    puts @view_board[6] + '|' + @view_board[7] + '|' + @view_board[8]
-  end
+puts "Welcome to Tic Tac Toe game \n\n "
 
-  def moveX |
-    puts 'Player X: Which square would you like?'
-    @last_move = gets.chomp
-    error
-    @true_board[@last_move.to_i - 1] = 1
-    @view_board[@last_move.to_i - 1] = 'X'
-    @last_player = 'X'
-  end
 
-  def moveO 
-    puts 'Player O: Which square would you like?'
-    @last_move = gets.chomp
-    error
-    @true_board[@last_move.to_i - 1] = -1
-    @view_board[@last_move.to_i - 1] = 'O'
-    @last_player = 'O'
-  end
+puts "Player1 type your name \n"
 
-  def error 
-    if @true_board[@last_move.to_i - 1] != 0
-      puts 'Sorry, please pick another box:'
-      display_board
-      @last_move = gets.chomp
-    end
-  end
+player_1_name = gets.chomp.strip.capitalize
 
-  def score 
-    row_1 = @true_board[0] + @true_board[1] + @true_board[2]
-    row_2 = @true_board[3] + @true_board[4] + @true_board[5]
-    row_3 = @true_board[6] + @true_board[7] + @true_board[8]
-    col_1 = @true_board[0] + @true_board[3] + @true_board[6]
-    col_2 = @true_board[1] + @true_board[4] + @true_board[7]
-    col_3 = @true_board[2] + @true_board[5] + @true_board[8]
-    diag_1 = @true_board[0] + @true_board[4] + @true_board[8]
-    diag_2 = @true_board[6] + @true_board[4] + @true_board[2]
-    @scores = [row_1, row_2, row_3, col_1, col_2, col_3, diag_1, diag_2]
-  end
-
-  def check
-    
-    @scores.each do |score|
-      if score == 3
-        @game_over = true
-        puts "Xs win!"
-        return
-      end
-      if score == -3
-        @game_over = true
-        puts "Os win!"
-        return
-      end
-    end
-    
-    if !@true_board.include? 0
-      @game_over = true
-      puts "Cat's game: MEOW!"
-    end
-  end
-
-  def play #runs the game
-    puts "Let's play tic-tac-toe!"
-    display_board
-
-    until @game_over == true
-      @last_player == 'O' ? moveX : moveO
-      display_board
-      score
-      check
-    end
-  end
+until Game.validate_name(player_1_name)
+  puts 'Name is too short,try again'
+  player_1_name = gets.chomp.strip.capitalize
 end
 
-fun = Game.new
-fun.play
+puts "Player2 type your name \n "
+player_2_name = gets.chomp.strip.capitalize
+
+until Game.validate_name(player_2_name)
+  puts 'Name is too short,try again'
+  player_2_name = gets.chomp.strip.capitalize
+end
+
+
+puts 'Computer will randomly choose sign for players, please wait'
+signs = Game.choose_signs
+player_1_sign, player_2_sign = signs
+
+
+player1 = Player.new(player_1_name, player_1_sign)
+player2 = Player.new(player_2_name, player_2_sign)
+
+
+puts "#{player1.name}(#{player1.sign}) -- vs -- #{player2.name}(#{player2.sign}) \n"
+sleep 2
+
+@toggler = 0
+
+tic_tac_toe = Game.new(player1, player2)
+
+puts tic_tac_toe.board.show_board
+
+until tic_tac_toe.winner?
+  current_player = tic_tac_toe.getcurrent_player[@toggler]
+
+  puts "#{current_player.name} it's your turn, please choose a number between 1 to 9"
+
+  num = gets.chomp.strip
+  res = tic_tac_toe.validate_move(num)
+
+  until res.to_i.positive?
+
+    if res == -1
+      puts "#{num} is already taken, please choose another number"
+    elsif res == -2
+      puts 'not a valid number, please choose a number between 1 to 9'
+    end
+
+    num = gets.chomp.strip
+    res = tic_tac_toe.validate_move(num)
+  end
+
+  puts "\n\n"
+  puts tic_tac_toe.board.update_board(num, current_player.sign)
+  puts "\n\n"
+
+  @toggler = @toggler.zero? ? 1 : 0
+end
+
+winner = tic_tac_toe.winner?
+puts winner == 'Draw' ? 'Draw. try again' : "#{winner} is winner !!!"
