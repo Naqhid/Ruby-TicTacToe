@@ -18,7 +18,6 @@ class Game
   end
 
   def self.choose_signs
-    show_progress
     generate_random_signs
   end
 
