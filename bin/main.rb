@@ -5,7 +5,6 @@ require_relative('../lib/game')
 
 puts "Welcome to Tic Tac Toe game \n\n "
 
-
 puts "Player1 type your name \n"
 
 player_1_name = gets.chomp.strip.capitalize
@@ -23,15 +22,12 @@ until Game.validate_name(player_2_name)
   player_2_name = gets.chomp.strip.capitalize
 end
 
-
 puts 'Computer will randomly choose sign for players, please wait'
 signs = Game.choose_signs
 player_1_sign, player_2_sign = signs
 
-
 player1 = Player.new(player_1_name, player_1_sign)
 player2 = Player.new(player_2_name, player_2_sign)
-
 
 puts "#{player1.name}(#{player1.sign}) -- vs -- #{player2.name}(#{player2.sign}) \n"
 sleep 2
@@ -70,4 +66,4 @@ until tic_tac_toe.winner?
 end
 
 winner = tic_tac_toe.winner?
-puts winner == 'Draw' ? 'Draw. try again' : "#{winner} is winner !!!"
+puts winner == 'Draw' ? 'Draw. try again' : "#{winner} is winner !!
