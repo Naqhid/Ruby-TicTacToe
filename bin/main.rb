@@ -66,4 +66,4 @@ until tic_tac_toe.winner?
 end
 
 winner = tic_tac_toe.winner?
-puts winner == 'Draw' ? 'Draw. try again' : "#{winner} is winner !!!"
+puts winner == 'Draw' ? 'Draw. try again' : "#{winner} is winner !!!"/n
