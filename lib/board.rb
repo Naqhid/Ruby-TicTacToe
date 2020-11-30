@@ -1,38 +1,51 @@
-require_relative("../lib/player")
 class Board
-  @@view_board = [0,1,2,3,4,5,6,7,8] 
-  @@combinations = [ [0,1,2], [3,0,6],[3,4,5],[6,7,8],[1,4,7],[2,5,8],[0,4,8],[6,4,2] ]
-      
-         def initialize
-        
-             @true_board = [10, 10, 10, 10, 10, 10, 10, 10, 10] 
-           
-         end
-  def display_board 
-    puts @@view_board[0].to_s + '|' + @@view_board[1].to_s + '|' + @@view_board[2].to_s
-    puts '-----'
-    puts @@view_board[3].to_s + '|' + @@view_board[4].to_s + '|' + @@view_board[5].to_s
-    puts '-----'
-    puts @@view_board[6].to_s + '|' + @@view_board[7].to_s + '|' + @@view_board[8].to_s
-  end
-  game.update_board
-  game.win_update
+  attr_accessor :squares
+  attr_reader :wining_combinations
 
+  def initialize
+    @squares = [
+      [{ '1': nil }, { '2': nil }, { '3': nil }],
+      [{ '4': nil }, { '5': nil }, { '6': nil }],
+      [{ '7': nil }, { '8': nil }, { '9': nil }]
+    ]
+
+    @wining_combinations = [
+      [1, 2, 3], [4, 5, 6], [7, 8, 9],
+      [1, 4, 7], [2, 5, 8], [3, 6, 9],
+      [1, 5, 9], [3, 5, 7]
+    ]
   end
 
+  def show_board
+    output = "+------------------------+\n"
 
+    @squares.each do |arr|
+      output += '|'
+      arr.each do |el|
+        el.each do |key, value|
+          output += if value
+                      " #{key} - #{value == 'x' ? "\u{274C}" : "\u2B55"} "
+                    else
+                      " #{key} - \u{2754} "
+                    end
+        end
+      end
+      output += "| \n"
+    end
 
+    output += '+------------------------+'
+    output
+  end
 
+  def update_board(num, sign)
+    @squares = @squares.map do |row|
+      row.each do |item|
+        item.each do |key, _value|
+          item[key] = sign if key == :"#{num}"
+        end
+      end
+    end
 
-
-
-
-
-
-
-
-
-
-
-
-
+    show_board
+  end
+end
