@@ -37,7 +37,6 @@ class Board
     output
   end
 
-  
   def update_board(num, sign)
     @squares = @squares.map do |row|
       row.each do |item|
