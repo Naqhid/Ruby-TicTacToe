@@ -1,5 +1,4 @@
 module Helper
- 
   def generate_random_signs
     sign1 = %w[x o].sample
     sign2 = sign1 == 'x' ? 'o' : 'x'
