@@ -66,7 +66,7 @@ RSpec.describe 'testing the game methods' do
     expect(player1.sign).not_to eq('o')
   end
 
-  
+  # rubocop:disable Metrics/BlockLength: Block has too many lines
 
   context 'Check Winner' do
     it 'Horizontal' do
@@ -112,4 +112,4 @@ RSpec.describe 'testing the game methods' do
     end
   end
 end
-
+# rubocop:enable Metrics/BlockLength: Block has too many lines
