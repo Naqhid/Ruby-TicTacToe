@@ -1,5 +1,5 @@
-require './lib/game'
-require './lib/player'
+require './lib/game.rb'
+require './lib/player.rb'
 
 RSpec.describe 'testing the game methods' do
   let(:player1) { Player.new('Grace', 'x') }
