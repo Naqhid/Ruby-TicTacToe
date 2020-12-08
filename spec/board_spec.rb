@@ -20,13 +20,11 @@ RSpec.describe 'testing the board' do
     end
 
     it 'should return a board with an "o" in 5h position if 9th position is x' do
-      
       board.update_board(9, 'x')
       expect(board.update_board(5, 'o')).to eq("+------------------------+\n| 1 - ❔  2 - ❔  3 - ❔ | \n| 4 - ❔  5 - ⭕  6 - ❔ | \n| 7 - ❔  8 - ❔  9 - ❌ | \n+------------------------+")
     end
 
     it 'should return a board with an "o" in 5h position if 9th position is x' do
-      
       board.update_board(9, 'x')
       expect(board.update_board(5, 'o')).not_to eq("+------------------------+\n| 1 - ❔  2 - ❔  3 - ❔ | \n| 4 - ❔  5 - X  6 - ❔ | \n| 7 - ❔  8 - ❔  9 - ❌ | \n+------------------------+")
     end
