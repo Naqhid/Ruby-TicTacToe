@@ -1,4 +1,4 @@
-require './lib/board.rb'
+require './lib/board'
 
 RSpec.describe 'testing the board' do
   it 'should show us an empty board' do
