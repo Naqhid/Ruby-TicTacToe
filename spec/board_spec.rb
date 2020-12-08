@@ -3,11 +3,11 @@ require './lib/board.rb'
 RSpec.describe 'testing the board' do
   let(:board) {Board.new}
   it 'should show us an empty board' do
-    expect(board.squares).to eq([{ '1': nil }, { '2': nil }, { '3': nil }],[{ '4': nil }, { '5': nil }, { '6': nil }],[{ '7': nil }, { '8': nil }, { '9': nil }])
+    expect(board.show_board).to eq([{ '1': nil }, { '2': nil }, { '3': nil }],[{ '4': nil }, { '5': nil }, { '6': nil }],[{ '7': nil }, { '8': nil }, { '9': nil }])
   end
 
   it 'should show us an empty board' do
-    expect(board.squares).not_to eq([{ '1': nil }, { '2': nil }, { '3': nil }],[{ '4': nil }, { '5': nil }, { '6': nil }],[{ '7': nil }, { '8': nil }, { '9': nil }])
+    expect(board.show_board).not_to eq([{ '1': nil }, { '2': nil }, { '3': nil }],[{ '4': nil }, { '5': nil }, { '6': nil }],[{ '7': nil }, { '8': nil }, { '9': nil }])
   end
 
   context 'update board methods' do
