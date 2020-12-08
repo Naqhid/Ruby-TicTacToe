@@ -47,9 +47,10 @@ until tic_tac_toe.winner?
 
   until res.to_i.positive?
 
-    if res == -1
+    case res
+    when -1
       puts "#{num} is already taken, please choose another number"
-    elsif res == -2
+    when -2
       puts 'not a valid number, please choose a number between 1 to 9'
     end
 
