@@ -59,8 +59,8 @@ describe Game do
       expect(game.validate_move('5')).to eql('5')
     end
   end
-  describe '#getcurrent_player' do 
-    it 'return an array  with two player object' do 
+  describe '#getcurrent_player' do
+    it 'return an array  with two player object' do
       expect(game.getcurrent_player).to be_an(Array)
     end
   end
@@ -80,6 +80,11 @@ describe Helper do
   describe '#generate_random_signs' do
     it 'return an array with the generated signs' do
       expect(game.generate_random_signs).to be_an(Array)
+    end
+  end
+  describe '#check_players_order' do
+    it 'returns an array with player names' do
+      expect(game.check_players_order(player_one,player_two)).to be_an(Array)
     end
   end
 end
