@@ -45,4 +45,19 @@ describe Game do
       expect(game_class.validate_name('Alan')).to_not be_falsy
     end
   end
+
+
+  describe '#validate_move' do
+    it 'return -1 when the move is already taken' do
+      expect(game.validate_move('2')).not_to eql(-1)
+    end
+
+    it 'return -2 when is an invalid move' do
+      expect(game.validate_move('10')).to eql(-2)
+    end
+
+    it 'return the valid number' do
+      expect(game.validate_move('5')).to eql('5')
+    end
+  end
 end
