@@ -11,4 +11,13 @@ describe Player do
       expect(subject).to be_an(Player)
     end
   end
-end
+end 
+describe Board do 
+  subject {Board.new} 
+  describe '#initialize' do 
+   it 'declare an object' do 
+    expect(subject).to be_an(Board)
+   end
+   end
+  end
+
