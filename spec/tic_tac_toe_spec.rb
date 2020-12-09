@@ -60,4 +60,9 @@ describe Game do
       expect(game.validate_move('5')).to eql('5')
     end
   end
+  describe '#getcurrent_player' do 
+    it 'return name of player to make move' do 
+      expect(game.getcurrent_player).to be_an(Array)
+    end
+  end
 end
