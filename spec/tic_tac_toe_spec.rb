@@ -46,7 +46,6 @@ describe Game do
     end
   end
 
-
   describe '#validate_move' do
     it 'return -1 when the move is already taken' do
       expect(game.validate_move('2')).not_to eql(-1)
@@ -65,9 +64,22 @@ describe Game do
       expect(game.getcurrent_player).to be_an(Array)
     end
   end
-  describe '#winner?' do 
-    it 'return an string' do 
+
+  describe '#winner?' do
+    it 'return an string' do
       expect(game.winner?).to_not be_an(String)
+    end
+  end
+end
+
+describe Helper do
+  let(:player_one) { Player.new('Fred', 'x') }
+  let(:player_two) { Player.new('Alex', 'o') }
+  let(:game) { Game.new(player_one, player_two) }
+
+  describe '#generate_random_signs' do
+    it 'return an array with the generated signs' do
+      expect(game.generate_random_signs).to be_an(Array)
     end
   end
 end
