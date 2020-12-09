@@ -61,8 +61,13 @@ describe Game do
     end
   end
   describe '#getcurrent_player' do 
-    it 'return name of player to make move' do 
+    it 'return an array  with two player object' do 
       expect(game.getcurrent_player).to be_an(Array)
+    end
+  end
+  describe '#winner?' do 
+    it 'return an string' do 
+      expect(game.winner?).to_not be_an(String)
     end
   end
 end
