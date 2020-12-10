@@ -41,8 +41,11 @@ describe Game do
   end
 
   describe '#validate_name' do
-    it 'returns false only when name is short' do
-      expect(game_class.validate_name('Alan')).to_not be_falsy
+    it 'when name is less than 3 words returns false' do
+      expect(game_class.validate_name('Kim')).to_not be_falsey
+    end
+    it 'when name is greater than 3 words return true' do
+      expect(game_class.validate_name('Anand')).to be_truthy
     end
   end
 
@@ -84,7 +87,7 @@ describe Helper do
   end
   describe '#check_players_order' do
     it 'returns an array with player names' do
-      expect(game.check_players_order(player_one,player_two)).to be_an(Array)
+      expect(game.check_players_order(player_one, player_two)).to be_an(Array)
     end
   end
 end
