@@ -13,16 +13,16 @@ describe Game do
     it 'returns an array with the random signs' do
       expect(game_class.choose_signs).to be_an(Array)
     end
-    it 'does not return a string' do 
-      expect(game_class.choose_signs).not_to be_an(String)
+    it 'does not return a string' do
+      expect(game_class.choose_signs).to_not be_an(String)
     end
   end
 
   describe '#validate_name' do
-    it 'when name is less than 3 words returns false' do
+    it 'return false when name is lesser than 3 words' do
       expect(game_class.validate_name('Kim')).to_not be_falsey
     end
-    it 'when name is greater than 3 words return true' do
+    it 'return true when name is greater than 3 words' do
       expect(game_class.validate_name('Anand')).to be_truthy
     end
   end
@@ -47,8 +47,12 @@ describe Game do
   end
 
   describe '#winner?' do
-    it 'return an string' do
+    it 'return an string only when there is a winner' do
       expect(game.winner?).to_not be_an(String)
+    end
+
+    it 'return nil if there is not a winner' do
+      expect(game.winner?).to be_nil
     end
   end
 end
