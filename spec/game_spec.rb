@@ -1,115 +1,53 @@
 require './lib/game'
 require './lib/player'
 
-RSpec.describe 'testing the game methods' do
-  let(:player1) { Player.new('Grace', 'x') }
-  let(:player2) { Player.new('Olamide', 'o') }
+RSpec.describe 'Game methods' do
+  let(:player1) { Player.new('Lamia', 'x') }
+  let(:player2) { Player.new('Mike', 'o') }
   let(:game) { Game.new(player1, player2) }
 
-  it 'it chooses sign for players' do
-    arr = Game.choose_signs
-    expect(arr.sort).to eq(%w[x o].sort)
+  it 'should return an array of x and o' do
+    expect(Game.choose_signs.sort).to eql(%w[x o].sort)
   end
 
-  it 'it chooses sign for players' do
-    arr = Game.choose_signs
-    expect(arr.sort).not_to eq(%w[x k].sort)
-  end
-
-  context 'validate the players move' do
-    it 'should check the moves between 1 to 9' do
-      expect(game.validate_move(6)).not_to eq(9)
+  context 'Validate the moves' do
+    it 'should check for the numbers between 1 to 9' do
+      expect(game.validate_move(3)).to eql(3)
     end
 
-    it 'should check the moves between 1 to 9' do
-      expect(game.validate_move(6)).to eq(6)
+    it 'should return -2 for string inputs' do
+      # p game.validate_move('abc')
+      expect(game.validate_move('abc')).to eql(-2)
     end
 
-    it 'should check if number is invalid' do
-      expect(game.validate_move('p')).to eq(-2)
-    end
-
-    it 'should check if number is invalid' do
-      expect(game.validate_move('y')).not_to eq(-5)
+    it 'will check for unique numbers' do
+      game.choosed_nums = [5]
+      expect(game.validate_move(5)).to eql(-1)
     end
   end
 
-  it 'validates player name if greater than 3' do
-    expect(Game.validate_name('Grace')).to be(true)
+  it 'should return true if input length is grater than 2' do
+    expect(Game.validate_name('Lamia')).to be true
   end
 
-  it 'validates player name if greater than 3' do
-    expect(Game.validate_name('Grace')).not_to be(false)
+  it 'should return array of players' do
+    expect(game.getcurrent_player).to eql([player1, player2])
   end
 
-  it 'validates player name if not less than 3' do
-    expect(Game.validate_name('ab')).to be(false)
-  end
-
-  it 'validates player name if not less than 3' do
-    expect(Game.validate_name('ab')).not_to be(true)
-  end
-
-  it 'get the current player' do
-    expect(player1.name).to eq('Grace')
-  end
-
-  it 'get the current player' do
-    expect(player1.sign).to eq('x')
-  end
-
-  it 'get the current player' do
-    expect(player1.name).not_to eq('paul')
-  end
-
-  it 'get the current player' do
-    expect(player1.sign).not_to eq('o')
-  end
-
-  # rubocop:disable Metrics/BlockLength: Block has too many lines
-
-  context 'Check Winner' do
-    it 'Horizontal' do
-      game.board.update_board(1, 'x')
-      game.board.update_board(2, 'x')
-      game.board.update_board(3, 'x')
-      expect(game.winner?).to eq('Grace')
+  context 'check winner?_method' do
+    it 'a draw' do
+      game.choosed_nums = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+      expect(game.winner?).to eql('Draw')
     end
 
-    it 'Horizontal' do
-      game.board.update_board(1, 'o')
-      game.board.update_board(2, 'x')
-      game.board.update_board(3, 'o')
-      expect(game.winner?).not_to eq('paul')
-    end
+    it 'winner is player 1' do
+      game.board.squares = [
+        [{ '1': nil }, { '2': 'x' }, { '3': nil }],
+        [{ '4': nil }, { '5': 'x' }, { '6': nil }],
+        [{ '7': nil }, { '8': 'x' }, { '9': nil }]
+      ]
 
-    it 'Vertical' do
-      game.board.update_board(1, 'o')
-      game.board.update_board(4, 'o')
-      game.board.update_board(7, 'o')
-      expect(game.winner?).to eq('Olamide')
-    end
-
-    it 'Vertical' do
-      game.board.update_board(1, 'x')
-      game.board.update_board(4, 'o')
-      game.board.update_board(7, 'x')
-      expect(game.winner?).not_to eq('mide')
-    end
-
-    it 'Diagonal' do
-      game.board.update_board(1, 'o')
-      game.board.update_board(5, 'o')
-      game.board.update_board(9, 'o')
-      expect(game.winner?).to eq('Olamide')
-    end
-
-    it 'Diagonal' do
-      game.board.update_board(1, 'x')
-      game.board.update_board(5, 'o')
-      game.board.update_board(9, 'o')
-      expect(game.winner?).not_to eq('lamide')
+      expect(game.winner?). to eql('Lamia')
     end
   end
 end
-# rubocop:enable Metrics/BlockLength: Block has too many lines
