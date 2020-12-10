@@ -1,6 +1,7 @@
 require './lib/board'
 
 RSpec.describe 'Board methods' do
+  let(:board) { Board.new }
   output = "+------------------------+\n"
 
   9.times do |num|
@@ -36,14 +37,14 @@ RSpec.describe 'Board methods' do
   updated_board_o += '+------------------------+'
 
   it 'should print empty board' do
-    expect(Board.new.show_board).to eq(output)
+    expect(board.show_board).to eq(output)
   end
 
   it 'should print x for 5 th position if sign is x' do
-    expect(Board.new.update_board(5, 'x')).to eq(updated_board_x)
+    expect(board.update_board(5, 'x')).to eq(updated_board_x)
   end
 
   it 'should print o for 5 th position if sign is o' do
-    expect(Board.new.update_board(5, 'o')).to eq(updated_board_o)
+    expect(board.update_board(5, 'o')).to eq(updated_board_o)
   end
 end
