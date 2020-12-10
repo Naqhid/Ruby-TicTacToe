@@ -24,7 +24,7 @@ class Board
       arr.each do |el|
         el.each do |key, value|
           output += if value
-                      " #{key} - #{value == 'x' ? "\u{274C}" : "\u2B55"} "
+                      " #{key} - #{value == 'x' ? "\u274C" : "\u2B55"} "
                     else
                       " #{key} - \u{2754} "
                     end
