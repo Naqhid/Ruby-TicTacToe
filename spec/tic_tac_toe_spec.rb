@@ -36,13 +36,18 @@ describe Game do
       expect(game.validate_move('10')).to eql(-2)
     end
 
-    it 'return the valid number' do
-      expect(game.validate_move('5')).to eql('5')
+    it 'return the valid string number' do
+      expect(game.validate_move('5')).to_not be_an(Numeric)
     end
   end
+
   describe '#getcurrent_player' do
     it 'return an array  with two player object' do
       expect(game.getcurrent_player).to be_an(Array)
+    end
+
+    it 'does not return a player name string' do
+      expect(game.getcurrent_player).to_not be_an(String)
     end
   end
 
