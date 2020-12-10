@@ -70,17 +70,17 @@ describe Helper do
   describe '#generate_random_signs' do
     it 'return an array with the generated signs' do
       expect(game.generate_random_signs).to be_an(Array)
-    end 
-    it 'does not return a Hash ' do 
-      expect(game.generate_random_signs).not_to  be_an(Hash)
+    end
+    it 'return an array only with two objects' do
+      expect(game.generate_random_signs.length).to_not eql(3)
     end
   end
   describe '#check_players_order' do
     it 'returns an array with player objects' do
       expect(game.check_players_order(player_one, player_two)).to be_an(Array)
-    end 
-    it 'does not return a set' do 
-      expect(game.check_players_order(player_one, player_two)).to_not be_an(Set)
+    end
+    it 'return an array only with two objects' do
+      expect(game.check_players_order(player_one, player_two)).to_not eql(3)
     end
   end
 end
