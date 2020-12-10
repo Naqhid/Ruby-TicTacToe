@@ -62,6 +62,36 @@ describe Game do
   end
 end
 
+describe Board do
+  let(:board) { Board.new }
+
+  describe '#show_board' do
+    it 'display game board' do
+      expect(board.show_board).to be_an(String)
+    end
+
+    context 'displays the board only with default signs' do
+      it 'does not include ❌' do
+        expect(board.show_board).to_not include('❌')
+      end
+
+      it 'does not include ⭕' do
+        expect(board.show_board).to_not include('⭕')
+      end
+    end
+  end
+
+  describe '#update_board' do
+    it 'display game board with player move' do
+      expect(board.update_board('1', 'x')).to include('❌')
+    end
+
+    it 'display only the choosen moves' do
+      expect(board.update_board('1', 'x')).to_not include('⭕')
+    end
+  end
+end
+
 describe Helper do
   let(:player_one) { Player.new('Fred', 'x') }
   let(:player_two) { Player.new('Alex', 'o') }
