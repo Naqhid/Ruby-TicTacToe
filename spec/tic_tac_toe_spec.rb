@@ -13,6 +13,9 @@ describe Game do
     it 'returns an array with the random signs' do
       expect(game_class.choose_signs).to be_an(Array)
     end
+    it 'does not return a string' do 
+      expect(game_class.choose_signs).not_to be_an(String)
+    end
   end
 
   describe '#validate_name' do
