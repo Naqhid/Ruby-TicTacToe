@@ -26,28 +26,32 @@ RSpec.describe 'Game methods' do
     end
   end
 
-  it 'should return true if input length is grater than 2' do
-    expect(Game.validate_name('Lamia')).to be true
-  end
-
-  it 'should return array of players' do
-    expect(game.getcurrent_player).to eql([player1, player2])
-  end
-
-  context 'check winner?_method' do
-    it 'a draw' do
-      game.choosed_nums = [1, 2, 3, 4, 5, 6, 7, 8, 9]
-      expect(game.winner?).to eql('Draw')
+  describe 'Game length' do
+    it 'should return true if input length is grater than 2' do
+      expect(Game.validate_name('Lamia')).to be true
     end
 
-    it 'winner is player 1' do
-      game.board.squares = [
-        [{ '1': nil }, { '2': 'x' }, { '3': nil }],
-        [{ '4': nil }, { '5': 'x' }, { '6': nil }],
-        [{ '7': nil }, { '8': 'x' }, { '9': nil }]
-      ]
+    it 'should return array of players' do
+      expect(game.getcurrent_player).to eql([player1, player2])
+    end
+  end
 
-      expect(game.winner?). to eql('Lamia')
+  describe 'Game winner' do
+    context 'check winner?_method' do
+      it 'a draw' do
+        game.choosed_nums = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+        expect(game.winner?).to eql('Draw')
+      end
+
+      it 'winner is player 1' do
+        game.board.squares = [
+          [{ '1': nil }, { '2': 'x' }, { '3': nil }],
+          [{ '4': nil }, { '5': 'x' }, { '6': nil }],
+          [{ '7': nil }, { '8': 'x' }, { '9': nil }]
+        ]
+
+        expect(game.winner?).to eql('Lamia')
+      end
     end
   end
 end
